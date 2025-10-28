@@ -24,3 +24,42 @@ ssh -T git@github.com
 git branch -M main
 git push -u origin main
 ```
+
+To create SSH keys, do the followings:
+
+
+0. Generate public and private key if you don't have, for example:  
+
+```ssh-keygen -t key_name -C "your_email@example.com" ```
+
+  
+
+1. Assign key to SSH Agent 
+
+```eval "$(ssh-agent -s)" 
+
+ssh-add ~/.ssh/id_rsa where id_rsa is private key  
+```
+ 
+
+Then, add to .bashrc 
+```
+eval "$(ssh-agent -s)" >/dev/null 
+
+ssh-add ~/.ssh/id_rsa 2>/dev/null 
+```
+ 
+And then source the .bashrc 
+ 
+Create a config file at .ssh/ with the following content: 
+
+```
+Host github.com 
+
+   AddKeysToAgent yes 
+
+   IdentityFile ~/.ssh/id_rsa 
+```
+ 
+
+Then make it private with ```chmod 600 ~/.ssh/config ```
