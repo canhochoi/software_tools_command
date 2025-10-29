@@ -15,3 +15,9 @@ Then, set jupyter notebook kernel and insert `"/usr/bin/env","-u","LD_LIBRARY_PA
 "-f","{connection_file}"],
 ... }
 ```
+In jupyter notebook, check
+```python
+import os, sys
+print("Kernel Python:", sys.executable)
+print("LD_LIBRARY_PATH:", os.environ.get("LD_LIBRARY_PATH"))
+```
